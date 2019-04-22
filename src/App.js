@@ -1,28 +1,37 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+import verifyAuthentication from './helpers/verifyAuthentication';
+
+import { Provider } from 'react-redux';
+import store from './store';
+
+import Login from './views/Login';
+import Home from './views/Home';
+import Register from './views/Register';
+
+import NavBar from './components/NavBar';
+import Tasks from './views/Tasks';
+
+class App extends React.Component {
+	state = {
+		isLogged: verifyAuthentication()
+	};
+
+	render() {
+		return (
+			<BrowserRouter>
+				<NavBar />
+				<Switch>
+					<Provider store={store}>
+						<Route path='/' exact component={Home} />
+						<Route path='/cadastro' component={Register} />
+						<Route path='/:projectId' component={Tasks} />
+					</Provider>
+				</Switch>
+			</BrowserRouter>
+		);
+	}
 }
 
 export default App;
