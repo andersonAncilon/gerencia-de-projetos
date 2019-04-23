@@ -8,27 +8,35 @@ import { bindActionCreators } from 'redux';
 
 import * as ProjectActions from '../../store/actions/projects';
 
-const Home = ({ projects, filterProject, filteredProject }) => {
-	return (
-		<div className='container '>
-			<h2>projetos</h2>
-			<div className='row'>
-				{projects.projects.map((data) => (
-					<Card key={data.id} props={data} filterProject={(id) => filterProject(id)} />
-				))}
-			</div>
-			{filteredProject}
-		</div>
-	);
+const Home = ({ history, projects, filterProject }) => {
+  function handleFilterProject(id) {
+    filterProject(id);
+    history.push(`/${id}`);
+  }
+  return (
+    <div className="container ">
+      <h2 className="text-center mt-5 mb-2">Projetos</h2>
+      <div className="row">
+        {projects.map(data => (
+          <Card
+            key={data.id}
+            props={data}
+            filterProject={id => handleFilterProject(id)}
+          />
+        ))}
+      </div>
+    </div>
+  );
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(ProjectActions, dispatch);
-const mapStateToProps = (state) => ({
-	projects: state.projects,
-	filteredProject: state.filteredProject
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(ProjectActions, dispatch);
+const mapStateToProps = state => ({
+  projects: state.projects.projects,
+  filteredProject: state.projects.filteredProject
 });
 
 export default connect(
-	mapStateToProps,
-	mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Home);

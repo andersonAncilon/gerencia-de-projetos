@@ -14,24 +14,24 @@ import NavBar from './components/NavBar';
 import Tasks from './views/Tasks';
 
 class App extends React.Component {
-	state = {
-		isLogged: verifyAuthentication()
-	};
+  state = {
+    isLogged: verifyAuthentication()
+  };
 
-	render() {
-		return (
-			<BrowserRouter>
-				<NavBar />
-				<Switch>
-					<Provider store={store}>
-						<Route path='/' exact component={Home} />
-						<Route path='/cadastro' component={Register} />
-						<Route path='/:projectId' component={Tasks} />
-					</Provider>
-				</Switch>
-			</BrowserRouter>
-		);
-	}
+  render() {
+    return (
+      <BrowserRouter>
+        <NavBar />
+        <Switch>
+          <Provider store={store}>
+            <Route path="/" exact component={Home} />
+            <Route path="/cadastro" component={Register} />
+            <Route path="/:projectId" component={Tasks} />
+          </Provider>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
