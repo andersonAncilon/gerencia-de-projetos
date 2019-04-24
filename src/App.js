@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import verifyAuthentication from './helpers/verifyAuthentication';
 
@@ -14,38 +14,25 @@ import NavBar from './components/NavBar';
 import Tasks from './views/Tasks';
 
 class App extends React.Component {
-  state = {
-    isLogged: verifyAuthentication()
-  };
+	state = {
+		isLogged: verifyAuthentication()
+	};
 
-  render() {
-    return (
-      <BrowserRouter>
-        <NavBar />
-        <Switch>
-          <Provider store={store}>
-            <Route path="/" exact component={Login} />
-            <Route path="/home" exact component={Home} />
-            <Route path="/cadastro" component={Register} />
-            <Route path="/projetos/:projectId" component={Tasks} />
-            <Route
-              path="*"
-              render={() => (
-                <div className="text-center mt-5">
-                  <h2 className="text-center text-danger">
-                    Página não encontrada
-                  </h2>
-                  <Link to="/" className="btn btn-success">
-                    Voltar
-                  </Link>
-                </div>
-              )}
-            />
-          </Provider>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
+	render() {
+		return (
+			<BrowserRouter>
+				<NavBar />
+				<Switch>
+					<Provider store={store}>
+						<Route path='/' exact component={Login} />
+						<Route path='/home' exact component={Home} />
+						<Route path='/cadastro' component={Register} />
+						<Route path='/projetos/:projectId' component={Tasks} />
+					</Provider>
+				</Switch>
+			</BrowserRouter>
+		);
+	}
 }
 
 export default App;
