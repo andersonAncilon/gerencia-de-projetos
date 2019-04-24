@@ -11,13 +11,12 @@ const Card = ({ props, filterProject }) => {
         <div className="card-body">
           <h5 className="card-title">Título: {props.title}</h5>
           <h6 className="card-subtitle mb-2 text-muted">
-            Tempo total gasto: {props.time}
+            Tempo total gasto: {props.time} horas
           </h6>
           <p className="card-text">Descrição: {props.description}</p>
           <button className="btn btn-primary" onClick={() => handleClick()}>
             Abrir
           </button>
-          <button className="ml-2 btn btn-success">Editar</button>
         </div>
       </div>
     </div>

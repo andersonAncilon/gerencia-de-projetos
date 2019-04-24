@@ -5,10 +5,35 @@ export function projectsADD(project) {
   };
 }
 
+export function projectSetTime(time, projectId) {
+  return {
+    type: 'SET_PROJECT_TIME',
+    time,
+    projectId
+  };
+}
+
+export function taskSetTime(time, projectId, taskId) {
+  return {
+    type: 'SET_TASK_TIME',
+    time,
+    projectId,
+    taskId
+  };
+}
+
 export function filterProject(id) {
   return {
     type: 'FILTER_PROJECT',
     id
+  };
+}
+
+export function tasksAdd(task, projectId) {
+  return {
+    type: 'ADD_TASK',
+    task,
+    projectId
   };
 }
 

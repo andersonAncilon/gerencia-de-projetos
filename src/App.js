@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 
 import verifyAuthentication from './helpers/verifyAuthentication';
 
@@ -24,9 +24,23 @@ class App extends React.Component {
         <NavBar />
         <Switch>
           <Provider store={store}>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact component={Login} />
+            <Route path="/home" exact component={Home} />
             <Route path="/cadastro" component={Register} />
-            <Route path="/:projectId" component={Tasks} />
+            <Route path="/projetos/:projectId" component={Tasks} />
+            <Route
+              path="*"
+              render={() => (
+                <div className="text-center mt-5">
+                  <h2 className="text-center text-danger">
+                    Página não encontrada
+                  </h2>
+                  <Link to="/" className="btn btn-success">
+                    Voltar
+                  </Link>
+                </div>
+              )}
+            />
           </Provider>
         </Switch>
       </BrowserRouter>
